@@ -17,27 +17,28 @@ function App(){
       });
    }
 
-   const [undo,setUndo] = useState([]);
+   const [undo,setUndo] = useState([{}]);
+   var original1 = {};
+   var original2 = {};
 
    function deleteNote(id){
-      
-      // setUndo( () => {
-      //    return noteItem[id];
-      // })
 
       setNotes(prevNotes => {
          return prevNotes.filter((noteItem , index) => {
             return index !== id;
-         } )
+         })
       })
-      setUndo(prevNotes => {
-         return prevNotes.filter((noteItem , index) => {
-            return index == id;
-         } )
-      })
+      original2 = notes;
+      console.log(original2);
    }
-
+   
+   original1 = notes;
+   console.log(original1);
    function undoNote(){
+      setUndo((original1,original2)=>{
+         return original1.filter();
+      })
+      console.log(undo);
       return addNote(undo);
    }
 
